@@ -2,6 +2,10 @@ local location = "map_scripts/maps/"
 local currentMap = game.GetMap()
 local loaded = false
 
+--- @class MapScripts
+MapScripts = {}
+include( "utils.lua" )
+
 local mapFiles = file.Find( location .. "*.lua", "lsv" )
 for _, mapFile in ipairs( mapFiles ) do
     local mapString = string.StripExtension( mapFile )
