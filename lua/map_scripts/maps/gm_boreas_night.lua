@@ -11,6 +11,7 @@ local removeThese = {
     env_physexplosion = true,
     env_fog_controller = true,
     func_reflective_glass = true,
+    prop_physics = true,
 
     weapon_357 = true,
     weapon_ar2 = true,
