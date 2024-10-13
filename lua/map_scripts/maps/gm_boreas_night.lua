@@ -37,7 +37,7 @@ local function isMapEnt( ent )
     return ent:MapCreationID() ~= -1
 end
 
-hook.Add( "InitPostEntity", "GMS_BoreasCleaner", function()
+hook.Add( "CFC_MapScripts_PostMapEntsSpawn", "GMS_BoreasCleaner", function()
     -- Technically the spotlights on this map are set to "efficient" and "no dynamic light" but we can get rid of a
     -- bunch of networked ents by turning them off and then removing them
     MapScripts.Utils.TurnOffSpotlights()

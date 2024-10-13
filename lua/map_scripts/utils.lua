@@ -27,3 +27,11 @@ function Utils.DisableShadowControl()
         shadowControl:Fire( "SetShadowsDisabled", 1 )
     end
 end
+
+hook.Add( "InitPostEntity", "CFC_MapScripts_PostMapEntsSpawn", function()
+    hook.Run( "CFC_MapScripts_PostMapEntsSpawn" )
+end )
+
+hook.Add( "PostCleanupMap", "CFC_MapScripts_PostMapEntsSpawn", function()
+    hook.Run( "CFC_MapScripts_PostMapEntsSpawn" )
+end )
