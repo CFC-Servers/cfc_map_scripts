@@ -20,3 +20,11 @@ end
 if not loaded then
     print( "map_scripts could not find a script for " .. currentMap )
 end
+
+hook.Add( "InitPostEntity", "CFC_MapScripts_PostMapEntsSpawn", function()
+    hook.Run( "CFC_MapScripts_PostMapEntsSpawn" )
+end )
+
+hook.Add( "PostCleanupMap", "CFC_MapScripts_PostMapEntsSpawn", function()
+    hook.Run( "CFC_MapScripts_PostMapEntsSpawn" )
+end )
