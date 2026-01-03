@@ -18,5 +18,4 @@ hook.Add( "CFC_MapScripts_PostMapEntsSpawn", "CFC_MapScripts_vacant_removeadminb
         removedEnts = removedEnts + 1
         SafeRemoveEntity( ent )
     end
-    print( "Removed entities: " .. removedEnts .. "/" .. #entIds )
 end )
