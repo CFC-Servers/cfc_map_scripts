@@ -41,8 +41,8 @@ hook.Add( "PlayerUse", "CFC_MapScripts_darkfusion_BlockBuilderUseOnMapButtons", 
 
     if ply:IsInBuild() then return false end -- pvpers only!
 
-    local plysPos = ply:GetPos()
-    if plysPos:DistToSqr( ent:GetPos() ) > tooFarDistanceSqr then return false end -- too far away, probably a wire user, etc
+    local plyPos = ply:GetPos()
+    if plyPos:DistToSqr( ent:GetPos() ) > tooFarDistanceSqr then return false end -- too far away, probably a wire user, etc
 
     -- all good, let them use the button
 end )
