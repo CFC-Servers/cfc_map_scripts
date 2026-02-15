@@ -1,6 +1,6 @@
 local entIDs = {
     6609, -- sound precaching button
-    6084, -- cheese dark fusion fuel cells 
+    6084, -- cheese dark fusion fuel cells
     6281, -- cheese stasis charges
     4145, -- 1 reactor tps
     4557, -- 2 reactor tps
@@ -14,9 +14,12 @@ local entIDs = {
     4593, -- DISABLE logic clock
     5203, -- spawn stasis cells RIGHT NOW RIGHT HERE
     6130, -- do something weird with the sound
+    4985, -- FORCE STASIS FAILURE (toggle)
+    5460, -- force toggle particle enrichment
+    4061, -- force toggle ALL lights in case of messed up flickering
     4288, -- color correction, clear
     5192, -- color correction, Pre Explosion
-    5192, -- color correction, Dark Energy Limbo
+    5959, -- color correction, Dark Energy Limbo
 }
 
 hook.Add( "CFC_MapScripts_PostMapEntsSpawn", "CFC_MapScripts_darkfusion_removeadminbuttons", function()
