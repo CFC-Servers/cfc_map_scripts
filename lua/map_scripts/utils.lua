@@ -27,3 +27,31 @@ function Utils.DisableShadowControl()
         shadowControl:Fire( "SetShadowsDisabled", 1 )
     end
 end
+
+local buttonClasses = {
+    ["func_button"] = true,
+    ["func_rot_button"] = true,
+}
+
+--- Removes func_button entities by their entity IDs
+--- @param ids table List of entity IDs to remove
+--- @return number Number of entities successfully removed
+function Utils.RemoveButtonsByID( ids )
+    local removedEnts = 0
+
+    for _, entID in ipairs( ids ) do
+        local ent = ents.GetMapCreatedEntity( entID )
+        if not IsValid( ent ) then
+            ErrorNoHaltWithStack( "Admin button removal: Couldn't find map ent " .. entID )
+            continue
+        end
+        if not buttonClasses[ent:GetClass()] then
+            ErrorNoHaltWithStack( "Admin button removal: Map entity " .. entID .. " is not a button!" )
+            continue
+        end
+        removedEnts = removedEnts + 1
+        SafeRemoveEntity( ent )
+    end
+
+    return removedEnts
+end

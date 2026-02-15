@@ -1,4 +1,4 @@
-local entIds = {
+local entIDs = {
     2725, -- color correction
     2716, -- high quality snowfall
     2729, -- toggle skybox
@@ -10,21 +10,6 @@ local entIds = {
     2718, -- fast
 }
 
-local buttonClass = "func_button"
-
 hook.Add( "CFC_MapScripts_PostMapEntsSpawn", "CFC_MapScripts_vacant_removeadminbuttons", function()
-    local removedEnts = 0
-    for _, entId in ipairs( entIds ) do
-        local ent = ents.GetMapCreatedEntity( entId )
-        if not IsValid( ent ) then
-            ErrorNoHaltWithStack( "Admin button removal: Couldn't find map ent " .. entId )
-            continue
-        end
-        if ent:GetClass() ~= buttonClass then
-            ErrorNoHaltWithStack( "Admin button removal: Map entity " .. entId .. " is not a button!" )
-            continue
-        end
-        removedEnts = removedEnts + 1
-        SafeRemoveEntity( ent )
-    end
+    MapScripts.Utils.RemoveButtonsByID( entIDs )
 end )
