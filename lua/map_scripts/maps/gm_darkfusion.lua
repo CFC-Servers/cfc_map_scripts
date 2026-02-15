@@ -36,7 +36,7 @@ if not CFCPvp then return end
 local tooFarDistanceSqr = 200^2
 
 hook.Add( "PlayerUse", "CFC_MapScripts_darkfusion_BlockBuilderUseOnMapButtons", function( ply, ent )
-    if ent:MapCreationID() <= -1 then return end
+    if ent:MapCreationID() == -1 then return end
     if not string.find( ent:GetClass(), "button" ) then return end -- not a button? who cares!
 
     if ply:IsInBuild() then return false end -- pvpers only!
