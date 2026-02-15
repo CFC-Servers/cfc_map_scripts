@@ -1,7 +1,10 @@
 local entIDs = {
     6609, -- sound precaching button
     6084, -- cheese dark fusion fuel cells
+    4005, -- ditto
     6281, -- cheese stasis charges
+    4909, -- ditto
+    4454, -- ditto
     4145, -- 1 reactor tps
     4557, -- 2 reactor tps
     5630, -- cleanup debris now
