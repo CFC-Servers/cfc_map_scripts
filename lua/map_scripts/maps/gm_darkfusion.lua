@@ -28,3 +28,21 @@ local entIDs = {
 hook.Add( "CFC_MapScripts_PostMapEntsSpawn", "CFC_MapScripts_darkfusion_removeadminbuttons", function()
     MapScripts.Utils.RemoveButtonsByID( entIDs )
 end )
+
+
+-- only allow pvpers to mess with the map for maximum LARP
+if not CFCPvp then return end
+
+local tooFarDistanceSqr = 200^2
+
+hook.Add( "PlayerUse", "CFC_MapScripts_darkfusion_BlockBuilderUseOnMapButtons", function( ply, ent )
+    if ent:MapCreationID() <= -1 then return end
+    if not string.find( ent:GetClass(), "button" ) then return end -- not a button? who cares!
+
+    if ply:IsInBuild() then return false end -- pvpers only!
+
+    local plysPos = ply:GetPos()
+    if plysPos:DistToSqr( ent:GetPos() ) > tooFarDistanceSqr then return false end -- too far away, probably a wire user, etc
+
+    -- all good, let them use the button
+end )
