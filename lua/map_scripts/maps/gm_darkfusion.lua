@@ -39,7 +39,7 @@ hook.Add( "PlayerUse", "CFC_MapScripts_darkfusion_BlockBuilderUseOnMapButtons", 
     if ent:MapCreationID() == -1 then return end
     if not string.find( ent:GetClass(), "button" ) then return end -- not a button? who cares!
 
-    if ply:IsInBuild() then return false end -- pvpers only!
+    if ply:IsInBuild() then ply:ChatPrint( "You must be in PVP to press darkfusion map buttons!" ) return false end -- pvpers only!
 
     local plyPos = ply:GetPos()
     if plyPos:DistToSqr( ent:GetPos() ) > tooFarDistanceSqr then return false end -- too far away, probably a wire user, etc
