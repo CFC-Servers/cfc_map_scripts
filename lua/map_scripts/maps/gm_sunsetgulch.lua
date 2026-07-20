@@ -1,2 +1,8 @@
 resource.AddWorkshop( "311697867" ) -- map
-resource.AddWorkshop( "391016040" ) -- tracks
+local tracksWSID = "391016040"
+resource.AddWorkshop( tracksWSID ) -- tracks
+hook.Add( "Contentalizer_ShouldAddWorkshop", "BlockSpecificAddon", function( addon )
+    if tostring( addon.wsid ) == tracksWSID then
+        return false
+    end
+end )
