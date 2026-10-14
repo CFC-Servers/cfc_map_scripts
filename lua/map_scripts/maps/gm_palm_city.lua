@@ -21,7 +21,10 @@ local function buildRaceControls()
     end
 end
 
-hook.Add( "Tick", "CFC_MapScripts_RestrictPalmCityButtons", buildRaceControls )
+hook.Add( "Tick", "CFC_MapScripts_RestrictPalmCityButtons", function()
+    hook.Remove( "Tick", "CFC_MapScripts_RestrictPalmCityButtons" )
+    buildRaceControls()
+end )
 
 hook.Add( "PlayerUse", "gm_palm_city_race_admin", function( ply, ent )
     if not IsValid( ent ) or not raceControlIDs[ent:MapCreationID()] then return end
