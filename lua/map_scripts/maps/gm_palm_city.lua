@@ -28,6 +28,7 @@ end )
 
 hook.Add( "PlayerUse", "gm_palm_city_race_admin", function( ply, ent )
     if not IsValid( ent ) or not raceControlIDs[ent:MapCreationID()] then return end
+    if ent:GetPos().z < 1300 then return end
     if ply:IsAdmin() then return end
 
     ply:ChatPrint( "Only admins can use race controls." )
