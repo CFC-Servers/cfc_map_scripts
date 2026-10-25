@@ -28,9 +28,25 @@ end )
 
 hook.Add( "PlayerUse", "gm_palm_city_race_admin", function( ply, ent )
     if not IsValid( ent ) or not raceControlIDs[ent:MapCreationID()] then return end
-    if ent:GetPos().z < 1300 then return end
-    if ply:IsAdmin() then return end
 
-    ply:ChatPrint( "Only admins can use race controls." )
-    return false
+    local now = CurTime()
+
+    if ent:GetPos().z >= 1300 and not ply:IsAdmin() then
+        if not ply.CFC_PalmCityRaceDeniedAt or now - ply.CFC_PalmCityRaceDeniedAt >= 10 then
+            ply.CFC_PalmCityRaceDeniedAt = now
+            ply:ChatPrint( "Only admins can use race controls." )
+        end
+
+        return false
+    end
+
+    -- PlayerUse runs every tick while +use is held, so only announce once per second
+    if not ply.CFC_PalmCityRacePressedAt or now - ply.CFC_PalmCityRacePressedAt >= 1 then
+        ply.CFC_PalmCityRacePressedAt = now
+        MapScripts.Utils.BroadcastConsole(
+            Color( 255, 200, 0 ), "[Race] ",
+            team.GetColor( ply:Team() ), ply:Nick(),
+            Color( 255, 255, 255 ), " pressed race control " .. ent:MapCreationID() .. " at " .. tostring( ent:GetPos() )
+        )
+    end
 end )
