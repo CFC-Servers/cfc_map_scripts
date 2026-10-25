@@ -55,3 +55,24 @@ function Utils.RemoveButtonsByID( ids )
 
     return removedEnts
 end
+
+util.AddNetworkString( "CFC_MapScripts_ConsolePrint" )
+
+--- Prints a colored line in every player's console
+--- @param ... any Colors and strings, in the same format as MsgC
+function Utils.BroadcastConsole( ... )
+    local args = { ... }
+
+    net.Start( "CFC_MapScripts_ConsolePrint" )
+    net.WriteUInt( #args, 8 )
+    for _, arg in ipairs( args ) do
+        local isColor = IsColor( arg )
+        net.WriteBool( isColor )
+        if isColor then
+            net.WriteColor( arg, false )
+        else
+            net.WriteString( tostring( arg ) )
+        end
+    end
+    net.Broadcast()
+end
